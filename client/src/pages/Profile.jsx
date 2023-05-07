@@ -1,12 +1,16 @@
 import { useContext, useState } from "react";
-import { Button, Container } from "react-bootstrap";
-import { useQuery } from "react-query";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import User from "../assets/BlankProfile.jpg";
 import Email from "../assets/image/Email.png";
+import VIP from "../assets/image/VIP Ticket.png";
+import Gender from "../assets/image/Gender.png";
+import Phone from "../assets/image/Phone.png";
+import Place from "../assets/image/Place.png";
 import Vektor from "../assets/image/Vector.png";
-import ModalUpdate from "../component/ModalUpdates";
 import { API } from "../config/api";
 import { UserContext } from "../context/userContext";
+import { useQuery } from "react-query";
+import ModalUpdate from "../component/ModalUpdates";
 
 export default function Profile() {
   const [showShipping, setShowShipping] = useState(null);
@@ -83,7 +87,11 @@ export default function Profile() {
             </div>
             <div className="d-grid  p-2 mb-4   w-25 m-auto ">
               <img
-                src={profile?.photo ? `${profile.photo}` : User}
+                src={
+                  profile?.photo
+                    ? `http://localhost:5000/uploads/${profile.photo}`
+                    : User
+                }
                 className="mt-2 rounded-2  "
                 style={{ objectFit: "cover" }}
                 width="200px"
