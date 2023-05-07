@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useMutation } from "react-query";
 import { UserContext } from "../context/userContext";
 import { API, setAuthToken } from "../config/api";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 
 export const Login = (props) => {
   const Navigate = useNavigate();
@@ -50,20 +50,20 @@ export const Login = (props) => {
         Navigate("/");
       }
       Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: 'Login Success',
+        position: "center",
+        icon: "success",
+        title: "Login Berhasil",
         showConfirmButton: false,
-        timer: 1500
-      })
+        timer: 1500,
+      });
     } catch (error) {
       Swal.fire({
-        position: 'center',
-        icon: 'error',
-        title: 'Login Failed',
+        position: "center",
+        icon: "error",
+        title: "Login Gagal",
         showConfirmButton: false,
-        timer: 1500
-      })
+        timer: 1500,
+      });
       console.log("login failed : ", error);
     }
     props.onHide();
@@ -71,9 +71,17 @@ export const Login = (props) => {
 
   return (
     <>
-      <Modal show={props.show} onHide={props.onHide} aria-labelledby="contained-modal-title-vcenter" centered>
+      <Modal
+        show={props.show}
+        onHide={props.onHide}
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
         <div className="px-5 pb-3">
-          <p className="fs-3 fw-bold text-center" style={{ color: "#EC7AB7", paddingTop: 45 }}>
+          <p
+            className="fs-3 fw-bold text-center"
+            style={{ color: "#EC7AB7", paddingTop: 45 }}
+          >
             LOGIN
           </p>
           <Form className="mt-4" onSubmit={(e) => handleSubmit.mutate(e)}>
@@ -87,7 +95,7 @@ export const Login = (props) => {
                 placeholder="Username"
                 style={{
                   textColor: "#B1B1B1",
-                  backgroundColor: "rgba(97, 61, 43, 0.25)",
+
                   border: "2px solid #B1B1B1",
                 }}
               />
@@ -98,19 +106,39 @@ export const Login = (props) => {
                 value={password}
                 placeholder="Password"
                 style={{
-                  backgroundColor: "rgba(97, 61, 43, 0.25)",
                   border: "2px solid #B1B1B1",
                 }}
               />
             </Form.Group>
-            <Button type="submit" className="fw-bold border-0 w-100 py-2 mt-3" style={{ background: "linear-gradient(180deg, #EC7AB7 0%, #EC7A7A 100%)", borderRadius: "50px" }}>
+            <Button
+              type="submit"
+              className="fw-bold border-0 w-100 py-2 mt-3"
+              style={{
+                background: "linear-gradient(180deg, #EC7AB7 0%, #EC7A7A 100%)",
+                borderRadius: "50px",
+              }}
+            >
               Login
             </Button>
           </Form>
 
-          <p className="text-center mt-3">
+          <p
+            className="text-center mt-3"
+            style={{
+              cursor: "pointer",
+              fontWeight: "bold",
+              color: "#B1B1B1",
+            }}
+          >
             Belum Punya Akun ? Klik{" "}
-            <span onClick={props.onClick} className="fw-bold" style={{ cursor: "pointer" }}>
+            <span
+              onClick={props.onClick}
+              style={{
+                cursor: "pointer",
+                fontWeight: "bold",
+                color: "#B1B1B1",
+              }}
+            >
               Disini
             </span>
           </p>

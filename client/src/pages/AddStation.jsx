@@ -31,7 +31,7 @@ export default function AddTicket() {
         Swal.fire({
           position: "center",
           icon: "success",
-          title: "New station has been added!",
+          title: "Berhasil Menambahkan Jurusan Station Baru!",
           showConfirmButton: false,
           timer: 1500,
         });
@@ -44,7 +44,7 @@ export default function AddTicket() {
       Swal.fire({
         position: "center",
         icon: "error",
-        title: "Failed to add station",
+        title: "Gagal Menambahkan Jurusan Station Baru!",
         showConfirmButton: false,
         timer: 1500,
       });
@@ -63,14 +63,36 @@ export default function AddTicket() {
           }}
         >
           <Form.Group className="mb-3">
-            <Form.Control type="text" name="name" placeholder="Station Name" onChange={handleChange} value={form.name} />
+            <Form.Control
+              type="text"
+              name="name"
+              placeholder="Station Name"
+              onChange={handleChange}
+              value={form.name}
+            />
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Control type="text" name="kota" placeholder="City" onChange={handleChange} value={form.kota} />
+            <Form.Control
+              type="text"
+              name="kota"
+              placeholder="City"
+              onChange={handleChange}
+              value={form.kota}
+            />
           </Form.Group>
 
-          <Button className="mt-5" variant="outline-light fw-bold" type="submit" style={{ width: "535px", height: "50px", background: "#0ACF83", marginLeft: "282px" }}>
+          <Button
+            className="mt-5"
+            variant="outline-light fw-bold"
+            type="submit"
+            style={{
+              width: "535px",
+              height: "50px",
+              background: "#0ACF83",
+              marginLeft: "282px",
+            }}
+          >
             Save
           </Button>
         </Form>

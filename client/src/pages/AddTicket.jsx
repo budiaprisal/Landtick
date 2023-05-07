@@ -51,7 +51,7 @@ export default function AddTicket() {
         Swal.fire({
           position: "center",
           icon: "success",
-          title: "New ticket has been added!",
+          title: "Berhasil Menambahkan Ticket Baru!",
           showConfirmButton: false,
           timer: 1500,
         });
@@ -71,7 +71,7 @@ export default function AddTicket() {
       Swal.fire({
         position: "center",
         icon: "error",
-        title: "Failed to add ticket",
+        title: "Gagal Menambahkan Ticket Baru!",
         showConfirmButton: false,
         timer: 1500,
       });
@@ -94,10 +94,23 @@ export default function AddTicket() {
           }}
         >
           <Form.Group className="mb-3">
-            <Form.Control type="text" name="train_name" placeholder="Nama Kereta" onChange={handleChange} value={form.train_name} />
+            <Form.Control
+              type="text"
+              name="train_name"
+              placeholder="Nama Kereta"
+              onChange={handleChange}
+              value={form.train_name}
+            />
           </Form.Group>
 
-          <Form.Select className="mb-3" name="train_type" aria-label="Default select example" onChange={handleChange} required={true} value={form.train_type}>
+          <Form.Select
+            className="mb-3"
+            name="train_type"
+            aria-label="Default select example"
+            onChange={handleChange}
+            required={true}
+            value={form.train_type}
+          >
             <option hidden>Jenis Kereta</option>
             <option value="Ekonomi">Ekonomi</option>
             <option value="Bisnis">Bisnis</option>
@@ -106,10 +119,22 @@ export default function AddTicket() {
           </Form.Select>
 
           <Form.Group className="mb-3">
-            <Form.Control type="date" name="start_date" placeholder="Tanggal Keberangkatan" onChange={handleChange} value={form.start_date} />
+            <Form.Control
+              type="date"
+              name="start_date"
+              placeholder="Tanggal Keberangkatan"
+              onChange={handleChange}
+              value={form.start_date}
+            />
           </Form.Group>
 
-          <Form.Select className="mb-3" name="start_station_id" aria-label="Default select example" onChange={handleChange} value={form.start_station_id}>
+          <Form.Select
+            className="mb-3"
+            name="start_station_id"
+            aria-label="Default select example"
+            onChange={handleChange}
+            value={form.start_station_id}
+          >
             <option hidden>Stasiun Keberangkatan</option>
             {stations?.map((item) => (
               <option key={item.id} value={item?.id}>
@@ -119,10 +144,22 @@ export default function AddTicket() {
           </Form.Select>
 
           <Form.Group className="mb-3">
-            <Form.Control type="time" name="start_time" placeholder="Jam Keberangkatan" onChange={handleChange} value={form.start_time} />
+            <Form.Control
+              type="time"
+              name="start_time"
+              placeholder="Jam Keberangkatan"
+              onChange={handleChange}
+              value={form.start_time}
+            />
           </Form.Group>
 
-          <Form.Select className="mb-3" name="destination_station_id" aria-label="Default select example" onChange={handleChange} value={form.destination_station_id}>
+          <Form.Select
+            className="mb-3"
+            name="destination_station_id"
+            aria-label="Default select example"
+            onChange={handleChange}
+            value={form.destination_station_id}
+          >
             <option hidden>Stasiun Tujuan</option>
             {stations?.map((item) => (
               <option key={item.id} value={item?.id}>
@@ -132,18 +169,48 @@ export default function AddTicket() {
           </Form.Select>
 
           <Form.Group className="mb-3">
-            <Form.Control type="time" name="arrival_time" placeholder="Jam Tiba" onChange={handleChange} value={form.arrival_time} />
+            <Form.Control
+              type="time"
+              name="arrival_time"
+              placeholder="Jam Tiba"
+              onChange={handleChange}
+              value={form.arrival_time}
+            />
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Control type="number" name="price" min={0} placeholder="Harga Tiket" onChange={handleChange} value={form.price} />
+            <Form.Control
+              type="number"
+              name="price"
+              min={0}
+              placeholder="Harga Tiket"
+              onChange={handleChange}
+              value={form.price}
+            />
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Control type="number" name="stock" min={0} placeholder="Qty" onChange={handleChange} value={form.stock} />
+            <Form.Control
+              type="number"
+              name="stock"
+              min={0}
+              placeholder="Qty"
+              onChange={handleChange}
+              value={form.stock}
+            />
           </Form.Group>
 
-          <Button className="mt-5" variant="outline-light fw-bold" type="submit" style={{ width: "535px", height: "50px", background: "#0ACF83", marginLeft: "282px" }}>
+          <Button
+            className="mt-5"
+            variant="outline-light fw-bold"
+            type="submit"
+            style={{
+              width: "535px",
+              height: "50px",
+              background: "#0ACF83",
+              marginLeft: "282px",
+            }}
+          >
             Save
           </Button>
         </Form>

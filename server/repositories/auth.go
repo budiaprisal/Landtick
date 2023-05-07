@@ -35,3 +35,10 @@ func (r *repository) GetUser(ID int) (models.User, error) {
 
 	return user, err
 }
+
+func (r *repository) CheckAuth(ID int) (models.User, error) {
+	var user models.User
+	err := r.db.Preload("Profile").First(&user, ID).Error // add this code
+
+	return user, err
+}

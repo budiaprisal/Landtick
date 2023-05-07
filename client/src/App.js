@@ -24,7 +24,10 @@ function App() {
     <div className="App">
       <Navbar />
       <Routes>
-        <Route path="/" element={state.user.role === "admin" ? <IndexAdmin /> : <Home />} />
+        <Route
+          path="/"
+          element={state.user.role === "admin" ? <IndexAdmin /> : <Home />}
+        />
         <Route path="/my-ticket" element={<MyTicket />} />
         <Route path="/my-ticket-approve" element={<MyTicketApprove />} />
         <Route path="/payment" element={<Payment />} />
@@ -38,7 +41,6 @@ function App() {
         {/* <Route path="/" element={<UserRoute />}> */}
 
         {/* </Route> */}
-
 
         {/* Route Admin */}
         {/* <Route path="/" element={<AdminRoute />}> */}

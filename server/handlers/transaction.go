@@ -21,7 +21,7 @@ import (
 
 type handlerTransaction struct {
 	TransactionRepository repositories.TransactionRepository
-	UserRepository repositories.UserRepository
+	UserRepository        repositories.UserRepository
 }
 
 func HandlerTransaction(transactionRepository repositories.TransactionRepository, UserRepository repositories.UserRepository) *handlerTransaction {
@@ -87,7 +87,7 @@ func (h *handlerTransaction) CreateTransaction(c echo.Context) error {
 
 	dataTransaction, err := h.TransactionRepository.GetTransaction(newTransaction.ID)
 	if err != nil {
-		return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Code: http.StatusInternalServerError, Message: "error4 :" +  err.Error()})
+		return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Code: http.StatusInternalServerError, Message: "error4 :" + err.Error()})
 	}
 
 	return c.JSON(http.StatusOK, dto.SuccessResult{Status: http.StatusOK, Data: dataTransaction})
@@ -190,20 +190,20 @@ func (h *handlerTransaction) Notification(c echo.Context) error {
 func SendMail(status string, transaction models.Transaction, user models.User) {
 
 	if status != transaction.Status && (status == "success") {
-	  var CONFIG_SMTP_HOST = "smtp.gmail.com"
-	  var CONFIG_SMTP_PORT = 587
-	  var CONFIG_SENDER_NAME = "LandTick <landtick.admin@gmail.com>"
-	  var CONFIG_AUTH_EMAIL = os.Getenv("EMAIL_SYSTEM")
-	  var CONFIG_AUTH_PASSWORD = os.Getenv("PASSWORD_SYSTEM")
-  
-	  var Quantity = strconv.Itoa(transaction.Qty)
-	  var Total = strconv.Itoa(transaction.Total)
-  
-	  mailer := gomail.NewMessage()
-	  mailer.SetHeader("From", CONFIG_SENDER_NAME)
-	  mailer.SetHeader("To", "halimawaludienkhafifie@gmail.com")
-	  mailer.SetHeader("Subject", "Transaction Status")
-	  mailer.SetBody("text/html", fmt.Sprintf(`<!DOCTYPE html>
+		var CONFIG_SMTP_HOST = "smtp.gmail.com"
+		var CONFIG_SMTP_PORT = 587
+		var CONFIG_SENDER_NAME = "LandTick <walidwalidsaja11@gmail.com>"
+		var CONFIG_AUTH_EMAIL = os.Getenv("EMAIL_SYSTEM")
+		var CONFIG_AUTH_PASSWORD = os.Getenv("PASSWORD_SYSTEM")
+
+		var Quantity = strconv.Itoa(transaction.Qty)
+		var Total = strconv.Itoa(transaction.Total)
+
+		mailer := gomail.NewMessage()
+		mailer.SetHeader("From", CONFIG_SENDER_NAME)
+		mailer.SetHeader("To", "walidwalidsaja11@gmail.com")
+		mailer.SetHeader("Subject", "Transaction Status")
+		mailer.SetBody("text/html", fmt.Sprintf(`<!DOCTYPE html>
 	  <html lang="en">
 		<head>
 		<meta charset="UTF-8" />
@@ -225,24 +225,24 @@ func SendMail(status string, transaction models.Transaction, user models.User) {
 		</ul>
 		</body>
 	  </html>`, Quantity, Total, status))
-  
-	  dialer := gomail.NewDialer(
-		CONFIG_SMTP_HOST,
-		CONFIG_SMTP_PORT,
-		CONFIG_AUTH_EMAIL,
-		CONFIG_AUTH_PASSWORD,
-	  )
-  
-	  err := dialer.DialAndSend(mailer)
-	  if err != nil {
-		log.Fatal(err.Error())
-	  }
-  
-	  log.Println("Mail sent! to " + CONFIG_AUTH_EMAIL)
-	}
-  }
 
-  func (h *handlerTransaction) DeleteTransaction(c echo.Context) error {
+		dialer := gomail.NewDialer(
+			CONFIG_SMTP_HOST,
+			CONFIG_SMTP_PORT,
+			CONFIG_AUTH_EMAIL,
+			CONFIG_AUTH_PASSWORD,
+		)
+
+		err := dialer.DialAndSend(mailer)
+		if err != nil {
+			log.Fatal(err.Error())
+		}
+
+		log.Println("Mail sent! to " + CONFIG_AUTH_EMAIL)
+	}
+}
+
+func (h *handlerTransaction) DeleteTransaction(c echo.Context) error {
 	id, _ := strconv.Atoi(c.Param("id"))
 	transaction, err := h.TransactionRepository.GetTransaction(id)
 	if err != nil {

@@ -7,8 +7,6 @@ import (
 	"landtick/routes"
 	"os"
 
-	// "os"
-
 	"github.com/joho/godotenv"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
@@ -38,10 +36,10 @@ func main() {
 
 	e.Static("/uploads", "./uploads")
 
-	var port = os.Getenv("PORT")
-	// var port = "5000"
+	var PORT = os.Getenv("PORT")
 
-	fmt.Println("Server starting", port)
-	e.Logger.Fatal(e.Start("localhost:" + port))
-
+	// fmt.Println("server running localhost:5000")
+	// e.Logger.Fatal(e.Start("localhost:5000"))
+	fmt.Println("server running localhost:" + PORT)
+	e.Logger.Fatal(e.Start(":" + PORT))
 }

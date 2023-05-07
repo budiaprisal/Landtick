@@ -23,7 +23,7 @@ type handlerAuth struct {
 
 func HandlerAuth(AuthRepository repositories.AuthRepository) *handlerAuth {
 	return &handlerAuth{AuthRepository}
-	
+
 }
 
 func (h *handlerAuth) Register(c echo.Context) error {
@@ -48,9 +48,7 @@ func (h *handlerAuth) Register(c echo.Context) error {
 		Username: request.Username,
 		Email:    request.Email,
 		Password: password,
-		Gender:   request.Gender,
 		Phone:    request.Phone,
-		Address:  request.Address,
 		Role:     "user",
 	}
 
@@ -109,7 +107,7 @@ func (h *handlerAuth) CheckAuth(c echo.Context) error {
 	userId := userLogin.(jwt.MapClaims)["id"].(float64)
 
 	//check user by id
-	user, err := h.AuthRepository.GetUser(int (userId))
+	user, err := h.AuthRepository.GetUser(int(userId))
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
 	}
