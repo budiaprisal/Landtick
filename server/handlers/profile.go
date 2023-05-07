@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"context"
 	"fmt"
 	profiledto "landtick/dto/profile"
 	dto "landtick/dto/result"
@@ -9,6 +10,9 @@ import (
 	"os"
 
 	"net/http"
+
+	"github.com/cloudinary/cloudinary-go/v2"
+	"github.com/cloudinary/cloudinary-go/v2/api/uploader"
 
 	"github.com/go-playground/validator/v10"
 	"github.com/golang-jwt/jwt/v4"
@@ -102,21 +106,21 @@ func (h *handlerProfile) UpdateProfile(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
 	}
 
-	// var ctx = context.Background()
-	// var CLOUD_NAME = os.Getenv("CLOUD_NAME")
-	// var API_KEY = os.Getenv("API_KEY")
-	// var API_SECRET = os.Getenv("API_SECRET")
+	var ctx = context.Background()
+	var CLOUD_NAME = os.Getenv("CLOUD_NAME")
+	var API_KEY = os.Getenv("API_KEY")
+	var API_SECRET = os.Getenv("API_SECRET")
 
-	// // Add your Cloudinary credentials ...
-	// cld, _ := cloudinary.NewFromParams(CLOUD_NAME, API_KEY, API_SECRET)
+	// Add your Cloudinary credentials ...
+	cld, _ := cloudinary.NewFromParams(CLOUD_NAME, API_KEY, API_SECRET)
 
-	// // Upload file to Cloudinary ...
-	// resp, err := cld.Upload.Upload(ctx, dataFile, uploader.UploadParams{Folder: "dumbflix"})
+	// Upload file to Cloudinary ...
+	resp, err := cld.Upload.Upload(ctx, dataFile, uploader.UploadParams{Folder: "dumbflix"})
 
 	user.ID = request.ID
 
 	if request.Photo != "" {
-		user.Photo = request.Photo
+		user.Photo = resp.SecureURL
 	}
 
 	data, err := h.ProfileRepository.UpdateProfile(user)

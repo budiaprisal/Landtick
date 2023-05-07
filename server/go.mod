@@ -3,6 +3,7 @@ module landtick
 go 1.19
 
 require (
+	github.com/cloudinary/cloudinary-go/v2 v2.2.0
 	github.com/go-playground/validator v9.31.0+incompatible
 	github.com/go-playground/validator/v10 v10.11.1
 	github.com/golang-jwt/jwt/v4 v4.4.3
@@ -15,7 +16,11 @@ require (
 	gorm.io/gorm v1.24.7-0.20230306060331-85eaf9eeda11
 )
 
-require github.com/go-sql-driver/mysql v1.7.0 // indirect
+require (
+	github.com/creasty/defaults v1.5.1 // indirect
+	github.com/google/uuid v1.2.0 // indirect
+	github.com/gorilla/schema v1.2.0 // indirect
+)
 
 require (
 	github.com/go-playground/locales v0.14.0 // indirect
@@ -38,5 +43,4 @@ require (
 	golang.org/x/time v0.3.0 // indirect
 	gopkg.in/alexcesaro/quotedprintable.v3 v3.0.0-20150716171945-2caba252f4dc // indirect
 	gopkg.in/go-playground/assert.v1 v1.2.1 // indirect
-	gorm.io/driver/mysql v1.5.0
 )
