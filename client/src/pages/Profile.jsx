@@ -83,7 +83,7 @@ export default function Profile() {
             </div>
             <div className="d-grid  p-2 mb-4   w-25 m-auto ">
               <img
-                src={profile?.photo ? `${profile.photo}` : Profile}
+                src={profile?.photo ? `${profile.photo}` : User}
                 className="mt-2 rounded-2  "
                 style={{ objectFit: "cover" }}
                 width="200px"
