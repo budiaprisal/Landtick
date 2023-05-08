@@ -69,15 +69,15 @@ func (h *handlerTransaction) CreateTransaction(c echo.Context) error {
 			TransactionIdIsExist = true
 		}
 	}
-	subTotal := ticket.Price * request.Qty
+	subTotal := ticket.Price * 1
 
 	transaction := models.Transaction{
 		ID:       TransactionId,
 		TicketID: ticket.ID,
 		Total:    subTotal,
 		UserID:   userId,
-		Qty:      request.Qty,
-		Status:   request.Status,
+		Qty:      1,
+		Status:   "sukses",
 	}
 
 	newTransaction, err := h.TransactionRepository.CreateTransaction(transaction)
