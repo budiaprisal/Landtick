@@ -77,7 +77,7 @@ func (h *handlerTransaction) CreateTransaction(c echo.Context) error {
 		Total:    subTotal,
 		UserID:   userId,
 		Qty:      1,
-		Status:   "sukses",
+		Status:   "success",
 	}
 
 	newTransaction, err := h.TransactionRepository.CreateTransaction(transaction)
@@ -192,7 +192,7 @@ func SendMail(status string, transaction models.Transaction, user models.User) {
 	if status != transaction.Status && (status == "success") {
 		var CONFIG_SMTP_HOST = "smtp.gmail.com"
 		var CONFIG_SMTP_PORT = 587
-		var CONFIG_SENDER_NAME = "LandTick <walidwalidsaja11@gmail.com>"
+		var CONFIG_SENDER_NAME = "dumbflix <walidwalidsaja11@gmail.com>"
 		var CONFIG_AUTH_EMAIL = os.Getenv("EMAIL_SYSTEM")
 		var CONFIG_AUTH_PASSWORD = os.Getenv("PASSWORD_SYSTEM")
 
@@ -201,7 +201,7 @@ func SendMail(status string, transaction models.Transaction, user models.User) {
 
 		mailer := gomail.NewMessage()
 		mailer.SetHeader("From", CONFIG_SENDER_NAME)
-		mailer.SetHeader("To", transaction.User.Email)
+		mailer.SetHeader("To", "walidwalidsaja11@gmail.com")
 		mailer.SetHeader("Subject", "Transaction Status")
 		mailer.SetBody("text/html", fmt.Sprintf(`<!DOCTYPE html>
 	  <html lang="en">
@@ -238,7 +238,7 @@ func SendMail(status string, transaction models.Transaction, user models.User) {
 			log.Fatal(err.Error())
 		}
 
-		log.Println("Mail sent! to " + transaction.User.Email)
+		log.Println("Mail sent! to " + CONFIG_AUTH_EMAIL)
 	}
 }
 
