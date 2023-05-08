@@ -69,15 +69,15 @@ func (h *handlerTransaction) CreateTransaction(c echo.Context) error {
 			TransactionIdIsExist = true
 		}
 	}
-	subTotal := ticket.Price * 1
+	subTotal := ticket.Price * request.Qty
 
 	transaction := models.Transaction{
 		ID:       TransactionId,
 		TicketID: ticket.ID,
 		Total:    subTotal,
 		UserID:   userId,
-		Qty:      1,
-		Status:   "success",
+		Qty:      request.Qty,
+		Status:   request.Status,
 	}
 
 	newTransaction, err := h.TransactionRepository.CreateTransaction(transaction)
@@ -201,7 +201,7 @@ func SendMail(status string, transaction models.Transaction, user models.User) {
 
 		mailer := gomail.NewMessage()
 		mailer.SetHeader("From", CONFIG_SENDER_NAME)
-		mailer.SetHeader("To", "walidwalidsaja11@gmail.com")
+		mailer.SetHeader("To", transaction.User.Email)
 		mailer.SetHeader("Subject", "Transaction Status")
 		mailer.SetBody("text/html", fmt.Sprintf(`<!DOCTYPE html>
 	  <html lang="en">
@@ -238,7 +238,7 @@ func SendMail(status string, transaction models.Transaction, user models.User) {
 			log.Fatal(err.Error())
 		}
 
-		log.Println("Mail sent! to " + CONFIG_AUTH_EMAIL)
+		log.Println("Mail sent! to " + transaction.User.Email)
 	}
 }
 

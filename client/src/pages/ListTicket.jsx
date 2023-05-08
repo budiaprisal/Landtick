@@ -29,10 +29,13 @@ export default function IndexAdmin() {
   const handleShowTicket = () => setShowTicket(true);
   const handleCloseTicket = () => setShowTicket(false);
 
-  let { data: ticketList, refetch } = useQuery("allTansactionCache", async () => {
-    const response = await API.get("/tikets");
-    return response.data.data;
-  });
+  let { data: ticketList, refetch } = useQuery(
+    "allTansactionCache",
+    async () => {
+      const response = await API.get("/tikets");
+      return response.data.data;
+    }
+  );
   console.log(ticketList);
 
   // If confirm is true, execute delete data
@@ -77,7 +80,11 @@ export default function IndexAdmin() {
       <div className="container mt-5">
         <h1>List Ticket</h1>
         <div className="mt-5">
-          <Table striped className="m-auto w-100" style={{ border: "none", width: "100%" }}>
+          <Table
+            striped
+            className="m-auto w-100"
+            style={{ border: "none", width: "100%" }}
+          >
             <thead className="">
               <tr>
                 <th>No</th>
@@ -94,18 +101,37 @@ export default function IndexAdmin() {
                     <td>{index + 1}</td>
                     <td>{data.user.fullname}</td>
                     <td>
-                      {data.ticket.start_station.name} - {data.ticket.destination_station.name}
+                      {data.ticket.start_station?.name}
+                      {data.ticket.destination_station?.name}
                     </td>
-                    {data.status === "pending" && <td style={{ color: "#FF9900" }}>{data.status}</td>}
-                    {data.status === "success" && <td style={{ color: "#78A85A" }}>{data.status}</td>}
-                    {data.status === "failed" && <td style={{ color: "#E83939" }}>{data.status}</td>}
+                    {data.status === "pending" && (
+                      <td style={{ color: "#FF9900" }}>{data.status}</td>
+                    )}
+                    {data.status === "success" && (
+                      <td style={{ color: "#78A85A" }}>{data.status}</td>
+                    )}
+                    {data.status === "failed" && (
+                      <td style={{ color: "#E83939" }}>{data.status}</td>
+                    )}
                     <td className="">
                       <div className="d-flex">
                         <div>
-                          <img onClick={handleShowTicket} src="/images/IconSearch.png" alt="" className="" style={{ cursor: "pointer" }} />
+                          <img
+                            onClick={handleShowTicket}
+                            src="/images/IconSearch.png"
+                            alt=""
+                            className=""
+                            style={{ cursor: "pointer" }}
+                          />
                         </div>
                         <div>
-                          <img onClick={() => handleDelete(data.id)} src="/images/IconTrash.png" alt="" className="ms-5" style={{ cursor: "pointer" }} />
+                          <img
+                            onClick={() => handleDelete(data.id)}
+                            src="/images/IconTrash.png"
+                            alt=""
+                            className="ms-5"
+                            style={{ cursor: "pointer" }}
+                          />
                         </div>
                       </div>
                     </td>
@@ -118,7 +144,11 @@ export default function IndexAdmin() {
       </div>
       <Footer />
       <ModalDetailTicket show={showTicket} onHide={handleCloseTicket} />
-      <DeleteData setConfirmDelete={setConfirmDelete} show={show} handleClose={handleClose} />
+      <DeleteData
+        setConfirmDelete={setConfirmDelete}
+        show={show}
+        handleClose={handleClose}
+      />
     </>
   );
 }
