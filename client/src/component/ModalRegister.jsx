@@ -61,22 +61,6 @@ export const Register = (props) => {
     props.onHide();
   });
 
-  // const onSubmitHandler = (e) => {
-  //   e.preventDefault();
-  //   console.log(formRegister);
-
-  //   const dataUsers = JSON.parse(localStorage.getItem("users"));
-  //   console.log(dataUsers);
-
-  //   if (dataUsers === null) {
-  //     localStorage.setItem("users", JSON.stringify([formRegister]));
-  //   } else {
-  //     dataUsers.push(formRegister);
-  //     localStorage.setItem("users", JSON.stringify(dataUsers));
-  //   }
-
-  //   props.onHide();
-  // };
 
   return (
     <Modal
